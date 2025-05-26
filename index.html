@@ -1,37 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Te Amo❤️</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Fondo Personalizado ❤️</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <canvas id="canvas"></canvas>
-  <div id="counter"></div>
+  <div id="counter">❤️ Días juntos: 0</div>
   
+  <!-- Botón flotante para móvil -->
+  <div id="mobile-controls">
+    <button id="menu-btn">☰ Menú</button>
+  </div>
+
   <!-- Panel de controles -->
-  <div id="controls-panel">
-    <h3>Personaliza tu fondo</h3>
+  <div id="controls-panel" class="hidden">
+    <h3>🎨 Personaliza tu fondo</h3>
     
+    <!-- Botón de subir foto (optimizado para móvil) -->
     <div class="control-group">
-      <label for="image-upload">Sube tu foto:</label>
-      <input type="file" id="image-upload" accept="image/*" />
+      <label class="upload-btn">
+        📸 Subir Foto
+        <input type="file" id="image-upload" accept="image/*" class="hidden-upload">
+      </label>
     </div>
     
+    <!-- Controles -->
     <div class="control-group">
-      <label for="size-slider">Tamaño imagen: <span id="size-value">100%</span></label>
+      <label for="size-slider">🔍 Tamaño: <span id="size-value">100%</span></label>
       <input type="range" id="size-slider" min="20" max="200" value="100">
     </div>
     
     <div class="control-group">
-      <label for="color-picker">Color del texto:</label>
+      <label for="color-picker">🎨 Color texto:</label>
       <input type="color" id="color-picker" value="#ff4d4d">
     </div>
     
     <div class="control-group">
-      <label for="neon-effect">Efecto neón:</label>
+      <label for="neon-effect">✨ Efecto:</label>
       <select id="neon-effect">
         <option value="none">Ninguno</option>
         <option value="soft">Suave</option>
@@ -41,24 +50,24 @@
     </div>
     
     <div class="control-group">
-      <label for="frame-select">Marco:</label>
+      <label for="frame-select">🖼️ Marco:</label>
       <select id="frame-select">
         <option value="none">Ninguno</option>
-        <option value="heart">Corazones</option>
-        <option value="sparkle">Estrellas</option>
-        <option value="polaroid">Polaroid</option>
+        <option value="heart">❤️ Corazones</option>
+        <option value="sparkle">⭐ Estrellas</option>
+        <option value="polaroid">📸 Polaroid</option>
       </select>
     </div>
     
-    <button id="download-btn">Descargar Fondo</button>
+    <button id="download-btn" class="download-btn">💾 Descargar Fondo</button>
   </div>
   
-  <!-- Contenedor de la imagen (ahora movible) -->
+  <!-- Contenedor de imagen (movible con dedo) -->
   <div id="image-container">
     <div id="image-preview"></div>
     <div id="frame-effect"></div>
   </div>
-  
+
   <script src="matrix.js"></script>
 </body>
 </html>

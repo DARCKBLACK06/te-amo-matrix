@@ -16,7 +16,7 @@ function createParticle() {
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     vy: 3 + Math.random() * 4, // velocidad caída (ajústalo aquí si quieres más o menos)
-    text: "Te amo",
+    text: "Te amo❤️",
     color: colors[Math.floor(Math.random() * colors.length)],
     vx: 0,
     vyExtra: 0

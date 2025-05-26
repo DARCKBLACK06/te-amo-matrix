@@ -97,3 +97,70 @@ window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
+
+// Nuevo código para manejar la imagen
+const imageContainer = document.getElementById('image-container');
+const imageUpload = document.getElementById('image-upload');
+const imagePreview = document.getElementById('image-preview');
+const downloadBtn = document.getElementById('download-btn');
+
+imageUpload.addEventListener('change', function(e) {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      const img = new Image();
+      img.src = event.target.result;
+      imagePreview.innerHTML = '';
+      imagePreview.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  }
+});
+
+downloadBtn.addEventListener('click', function() {
+  // Creamos un canvas temporal que combine todo
+  const tempCanvas = document.createElement('canvas');
+  tempCanvas.width = canvas.width;
+  tempCanvas.height = canvas.height;
+  const tempCtx = tempCanvas.getContext('2d');
+  
+  // Dibujamos el fondo de matrix
+  tempCtx.drawImage(canvas, 0, 0);
+  
+  // Dibujamos la imagen si existe
+  const img = imagePreview.querySelector('img');
+  if (img) {
+    const containerRect = imageContainer.getBoundingClientRect();
+    const imgWidth = img.naturalWidth;
+    const imgHeight = img.naturalHeight;
+    const ratio = Math.min(
+      imagePreview.offsetWidth / imgWidth,
+      imagePreview.offsetHeight / imgHeight
+    );
+    
+    const drawWidth = imgWidth * ratio;
+    const drawHeight = imgHeight * ratio;
+    const x = containerRect.left + (imagePreview.offsetWidth - drawWidth) / 2;
+    const y = containerRect.top + (imagePreview.offsetHeight - drawHeight) / 2;
+    
+    tempCtx.drawImage(
+      img,
+      x, y, drawWidth, drawHeight
+    );
+  }
+  
+  // Convertimos a imagen y descargamos
+  const dataURL = tempCanvas.toDataURL('image/png');
+  const link = document.createElement('a');
+  link.download = 'te-amo-con-fondo.png';
+  link.href = dataURL;
+  link.click();
+});
+
+// Asegurar que el contenedor de imagen permanezca centrado al redimensionar
+window.addEventListener('resize', function() {
+  const containerRect = imageContainer.getBoundingClientRect();
+  imageContainer.style.left = '50%';
+  imageContainer.style.top = '50%';
+});

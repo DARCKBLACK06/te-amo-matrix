@@ -5,18 +5,58 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Te Amo❤️</title>
-  
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <canvas id="canvas"></canvas>
   <div id="counter"></div>
   
-  <!-- Nuevo contenedor para la imagen -->
+  <!-- Panel de controles -->
+  <div id="controls-panel">
+    <h3>Personaliza tu fondo</h3>
+    
+    <div class="control-group">
+      <label for="image-upload">Sube tu foto:</label>
+      <input type="file" id="image-upload" accept="image/*" />
+    </div>
+    
+    <div class="control-group">
+      <label for="size-slider">Tamaño imagen: <span id="size-value">100%</span></label>
+      <input type="range" id="size-slider" min="20" max="200" value="100">
+    </div>
+    
+    <div class="control-group">
+      <label for="color-picker">Color del texto:</label>
+      <input type="color" id="color-picker" value="#ff4d4d">
+    </div>
+    
+    <div class="control-group">
+      <label for="neon-effect">Efecto neón:</label>
+      <select id="neon-effect">
+        <option value="none">Ninguno</option>
+        <option value="soft">Suave</option>
+        <option value="medium" selected>Medio</option>
+        <option value="strong">Fuerte</option>
+      </select>
+    </div>
+    
+    <div class="control-group">
+      <label for="frame-select">Marco:</label>
+      <select id="frame-select">
+        <option value="none">Ninguno</option>
+        <option value="heart">Corazones</option>
+        <option value="sparkle">Estrellas</option>
+        <option value="polaroid">Polaroid</option>
+      </select>
+    </div>
+    
+    <button id="download-btn">Descargar Fondo</button>
+  </div>
+  
+  <!-- Contenedor de la imagen (ahora movible) -->
   <div id="image-container">
-    <input type="file" id="image-upload" accept="image/*" />
     <div id="image-preview"></div>
-    <button id="download-btn">Descargar Imagen</button>
+    <div id="frame-effect"></div>
   </div>
   
   <script src="matrix.js"></script>
